@@ -2,13 +2,7 @@ from random import random, choice
 from gym import Env
 import gym
 from gridworld import *
-from core import Transition, Experience, Agent
-from approximator import Approximator
-from agents import ApproxQAgent
-import torch
-
-
-def testApproxQAgent():
+from core import Transition, Experience, Agent18
     env = gym.make("MountainCar-v0")
     #env = SimpleGridWorld()
     directory = "/home/qiang/workspace/reinforce/monitor"

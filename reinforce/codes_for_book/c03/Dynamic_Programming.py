@@ -1,6 +1,6 @@
 #encoding:utf-8
 
-#动态规划进行策略评估、策略迭代和价值迭代
+#异步动态规划进行策略评估、策略迭代和价值迭代，可明显降低计算量，提高计算效率
 
 #1 小型方格世界MDP建模
 
@@ -33,6 +33,8 @@ MDP = S, A, P, R, gamma
 #异步动态规划，使用最近更新的状态价值，更新当前状态价值
 V = [0  for _ in range(16)] # 状态价值初始化
 V_pi = policy_evaluate(MDP, V, uniform_random_pi, 100)
+print("随机策略评估： ")
+print("")
 display_V(V_pi)
 
 V = [0  for _ in range(16)] # 状态价值

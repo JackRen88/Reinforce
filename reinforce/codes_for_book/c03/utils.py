@@ -1,3 +1,5 @@
+#encoding:utf-8
+
 ds_actions = {"n": -4, "e": 1, "s": 4, "w": -1} # 行为对状态的改变
 
 def dynamics(s, a): # 环境动力学
@@ -39,7 +41,7 @@ def get_reward(R, s, a):
 
 def display_V(V): # 显示状态价值
     for i in range(16):
-        print('{0:>6.2f}'.format(V[i]),end = " ")
+        print('{0:>6.2f}'.format(1),end = " ")
         if (i+1) % 4 == 0:
             print("")
     print() 
