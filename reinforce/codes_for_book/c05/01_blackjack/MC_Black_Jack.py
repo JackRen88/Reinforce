@@ -365,7 +365,7 @@ def naive_policy(A, s, Q=None, k=None):
 
 
 A = ["继续叫牌", "停止叫牌"]
-Prediction_or_control = True
+Prediction_or_control = False
 
 display = False
 # 创建一个玩家一个庄家，玩家使用原始策略，庄家使用其固定的策略
