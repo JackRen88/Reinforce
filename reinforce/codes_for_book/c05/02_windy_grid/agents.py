@@ -122,7 +122,7 @@ class QAgent(Agent):
         is_done = False
         while not is_done:
             # add code here
-            a0 = self.perform_policy(s0, epsilon)
+            a0 = self.perform_policy(s0, epsilon)#random sample
             s1, r1, is_done, info, total_reward = self.act(a0)
             if display:
                 self.env.render()
