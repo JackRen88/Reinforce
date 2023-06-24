@@ -30,7 +30,7 @@ class SarsaAgent(Agent):
         s0 = self.state
         if display:
             self.env.render()
-        a0 = self.perform_policy(s0, epsilon)
+        a0 = self.perform_policy(s0, self.Q, epsilon)
         # print(self.action_t.name)
         time_in_episode, total_reward = 0, 0
         is_done = False
@@ -39,7 +39,7 @@ class SarsaAgent(Agent):
             s1, r1, is_done, info, total_reward = self.act(a0)
             if display:
                 self.env.render()
-            a1 = self.perform_policy(s1, epsilon)
+            a1 = self.perform_policy(s1, self.Q, epsilon)
             old_q = get_dict(self.Q, s0, a0)
             q_prime = get_dict(self.Q, s1, a1)
             td_target = r1 + gamma * q_prime
@@ -122,11 +122,11 @@ class QAgent(Agent):
         is_done = False
         while not is_done:
             # add code here
-            a0 = self.perform_policy(s0, epsilon)#random sample
+            a0 = self.perform_policy(s0, self.Q, epsilon)
             s1, r1, is_done, info, total_reward = self.act(a0)
             if display:
                 self.env.render()
-            self.policy = greedy_policy
+            # self.policy = greedy_policy
             a1 = greedy_policy(self.A, s1, self.Q)
             old_q = get_dict(self.Q, s0, a0)
             q_prime = get_dict(self.Q, s1, a1)

@@ -206,7 +206,7 @@ class Agent(object):
         '''
         return random.sample(self.A, k=1)[0]
     
-    def perform_policy(self, s, Q = None, epsilon = 0.05):
+    def perform_policy(self, s, Q=None, epsilon=0.05):
         action = self.policy(self.A, s, Q, epsilon)
         return int(action)
     
