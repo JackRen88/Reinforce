@@ -200,6 +200,7 @@ class Agent(object):
         self.experience = Experience(capacity = capacity)
         # 有一个变量记录agent当前的state相对来说还是比较方便的。要注意对该变量的维护、更新
         self.state = None   # 个体的当前状态
+        self.name=""
     
     def policy(self, A, s = None, Q = None, epsilon = None):
         '''均一随机策略
@@ -247,7 +248,7 @@ class Agent(object):
     def learning(self, lambda_ = 0.9, epsilon = None, decaying_epsilon = True, gamma = 0.9, 
                  alpha = 0.1, max_episode_num = 800, display = False):
         total_time,  episode_reward, num_episode = 0,0,0
-        total_times, episode_rewards, num_episodes = [], [], []
+        total_times, episode_rewards, ma_rewards, num_episodes = [], [], [], []
         for i in tqdm(range(max_episode_num)):
             if epsilon is None:
                 epsilon = 1e-10
@@ -260,8 +261,13 @@ class Agent(object):
             total_times.append(total_time)
             episode_rewards.append(episode_reward)
             num_episodes.append(num_episode)
+
+            if ma_rewards:
+              ma_rewards.append(ma_rewards[-1]*0.9+episode_reward*0.1)
+            else:
+              ma_rewards.append(episode_reward)
         #self.experience.last_episode.print_detail()
-        return  total_times, episode_rewards, num_episodes
+        return  total_times, episode_rewards, num_episodes, ma_rewards
 
     def sample(self, batch_size = 64):
         '''随机取样
@@ -275,5 +281,6 @@ class Agent(object):
         return self.experience.total_trans
     
     def last_episode_detail(self):
+        print(self.name)
         self.experience.last_episode.print_detail()
     

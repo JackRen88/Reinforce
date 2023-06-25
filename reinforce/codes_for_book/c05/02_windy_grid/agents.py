@@ -21,7 +21,7 @@ class SarsaAgent(Agent):
     def __init__(self, env:Env, capacity:int = 20000):
         super(SarsaAgent, self).__init__(env, capacity)
         self.Q = {}
-
+        self.name ="SarsaAgent"
     def policy(self, A, s, Q, epsilon):
         return epsilon_greedy_policy(A, s, Q, epsilon)
 
@@ -49,6 +49,7 @@ class SarsaAgent(Agent):
             s0, a0 = s1, a1
             time_in_episode += 1
         if display:
+            print(self.name)
             print(self.experience.last_episode)
         return time_in_episode, total_reward
     
@@ -107,7 +108,7 @@ class QAgent(Agent):
     def __init__(self, env:Env, capacity:int = 20000):
         super(QAgent, self).__init__(env, capacity)
         self.Q = {}
-
+        self.name ="QAgent"
     def policy(self, A, s, Q, epsilon):
         return epsilon_greedy_policy(A, s, Q, epsilon)
     
@@ -138,6 +139,7 @@ class QAgent(Agent):
             s0 = s1
             time_in_episode += 1
         if display:
+            print(self.name)
             print(self.experience.last_episode)
         return time_in_episode, total_reward    
             
