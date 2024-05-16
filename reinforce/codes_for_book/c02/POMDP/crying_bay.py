@@ -2,16 +2,16 @@
 Copyright (c) 2023 by GAC, All Rights Reserved. 
 Author: renchengjin
 Date: 2023-07-28 16:04:34
-LastEditors: JackRen88
-LastEditTime: 2023-07-30 09:09:17
+LastEditors: JackRen
+LastEditTime: 2023-07-31 09:32:18
 Description: 
 '''
-import quickpomdp
+from quickpomdp import QuickPOMDP
 
 states = ["hungry", "full"]
 actions = ["feed", "ingore"]
-observation = ["crying", "quiet"]
-
+observations = ["crying", "quiet"]
+initialstate = "full"
 
 def transition(s, a, s1):
     if a == "feed":
@@ -54,4 +54,4 @@ if __name__ == "__main__":
     a = "feed"
     r = reward(s, a)
     print("test reward function,r= {}".format(r))
-    pomdp = QuickPOMDP()
+    pomdp = QuickPOMDP(states,actions,observations,initialstate,transition,observation,reward,discount=0.9)
